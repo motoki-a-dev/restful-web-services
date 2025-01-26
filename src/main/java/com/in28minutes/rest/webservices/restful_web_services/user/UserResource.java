@@ -29,7 +29,11 @@ public class UserResource {
 	// 対象IDを持つユーザーを取得する
 	@GetMapping("/users/{id}")
 	public User retrieveUser(@PathVariable int id) {
-		return service.findOne(id);
+		User user = service.findOne(id);
+		if (user == null) {
+			throw new UserNotFoundException("id:" + id);
+		}
+		return user;
 	}
 
 	// ユーザーを追加する

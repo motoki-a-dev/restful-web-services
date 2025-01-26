@@ -27,7 +27,7 @@ public class UserDaoService {
 	// ID指定検索
 	public User findOne(int id) {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
-		return users.stream().filter(predicate).findFirst().get();
+		return users.stream().filter(predicate).findFirst().orElse(null);
 	}
 
 	// 登録
